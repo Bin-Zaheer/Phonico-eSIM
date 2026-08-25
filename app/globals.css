@@ -275,23 +275,7 @@
 }
 
 .whyChoose {
-  position: relative;
-  width: 100%;
-}
-
-.whyChooseBg {
-  position: absolute;
-
-  z-index: 0;
-}
-
-.whyChooseContent {
-  position: relative;
-  z-index: 1;
-
-  width: 100%;
-}
-
-.easybg {
-  background-image: url("../public/assets/wavyBlob.svg");
+  background-image: url("../public/assets/wavyBlobRight.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }

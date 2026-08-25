@@ -17,14 +17,6 @@ const Whychoose = ({
   return (
     <>
       <section className="whyChoose w-full ">
-        <Image
-          className="whyChooseBg"
-          src={Bg}
-          alt="Bg Pic"
-          width={850}
-          height={500}
-        ></Image>
-
         <div className="whyChooseContent relative z-10 flex w-full flex-col items-center justify-center gap-8 px-4 py-10 sm:px-6 sm:py-12 md:px-8 lg:flex-row lg:gap-10 lg:px-10 lg:py-14 xl:py-16">
           <div className="w-full lg:w-[50%]">
             <p className="w-full text-3xl font-semibold leading-tight tracking-wide sm:text-4xl md:text-5xl md:leading-[1.2] lg:max-w-[500px]">
