@@ -1,33 +1,45 @@
 "use client";
-import { Skeleton } from "@/components/ui/skeleton";
 import { getblogs } from "@/services/blogs.service";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
-import React from "react";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const Dynamicblog = ({
   slug,
 }: {
   slug: string[];
 }) => {
+  const blogId = slug?.[1];
+
   const { data, isLoading, isError, error } =
     useQuery({
-      queryKey: ["productdetail"],
+      queryKey: ["productdetail", blogId],
       queryFn: () =>
         getblogs(
-          `https://platform.phonico.com/api/landing/blog/${slug?.[1]}`,
+          `https://platform.phonico.com/api/landing/blog/${blogId}`,
         ),
+      enabled: !!blogId,
     });
+
   if (isLoading) {
     return (
-      <div className=" flex justify-center items-center">
+      <div className="flex justify-center items-center">
         <Skeleton className="w-300 h-200 bg-[#cfcfcf]" />
       </div>
     );
   }
+
+  if (isError) {
+    return (
+      <div>
+        Error loading blog: {error?.message}
+      </div>
+    );
+  }
+
   return (
     <div className="px-30 flex flex-col justify-center items-center">
-      <div className="">
+      <div>
         <Image
           src={data?.data?.image}
           alt="Image"
@@ -70,7 +82,7 @@ const Dynamicblog = ({
         <p className="text-xl font-bold underline">
           {data?.data?.author_name}
         </p>
-        <p className="text-lg font-light ">
+        <p className="text-lg font-light">
           {data?.data?.description}
         </p>
       </div>
