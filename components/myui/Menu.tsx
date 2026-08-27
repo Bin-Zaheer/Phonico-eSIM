@@ -73,19 +73,19 @@ const Menu = () => {
               </div>
             ) : (
               status !== "authenticated" && (
-                <div className="hidden lg:flex gap-4">
+                <div className="  gap-4 space-y-4">
                   <Link href={"/login"}>
-                    <button className="cursor-pointer flex shrink-0 items-center justify-center gap-1 rounded-md bg-[#ee5e7f] px-2.5 py-2 text-xs font-semibold transition duration-300 hover:bg-[#cb4060] min-[350px]:px-3 min-[350px]:text-sm sm:px-4 sm:py-2.5 md:px-3 lg:px-5 lg:py-3 lg:text-base">
+                    <button className="cursor-pointer flex shrink-0 items-center justify-center gap-1 rounded-md bg-[#ee5e7f] px-2.5 py-2 text-xs font-semibold transition duration-300 hover:bg-[#cb4060]  mb-3">
                       <FiLogIn className="text-sm sm:text-base lg:text-xl" />
-                      <span className="hidden sm:inline">
+                      <span className=" sm:inline">
                         Login
                       </span>
                     </button>
                   </Link>
                   <Link href={"/register"}>
-                    <button className="cursor-pointer flex shrink-0 items-center justify-center gap-1 rounded-md border border-gray-500/20 px-2.5 py-2 text-xs font-semibold text-black transition duration-300 hover:bg-gray-600/20 min-[350px]:px-3 min-[350px]:text-sm sm:px-4 sm:py-2.5 md:px-3 lg:px-5 lg:py-3 lg:text-base">
+                    <button className="cursor-pointer flex shrink-0 items-center justify-center gap-1 rounded-md border border-gray-500/20 px-2.5 py-2 text-xs font-semibold text-black transition duration-300 hover:bg-gray-600/20">
                       <GoPersonAdd className="text-sm sm:text-base lg:text-xl" />
-                      <span className="hidden sm:inline">
+                      <span className=" sm:inline">
                         Sign Up
                       </span>
                     </button>

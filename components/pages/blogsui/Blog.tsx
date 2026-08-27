@@ -29,7 +29,8 @@ const Blog = () => {
     });
   function categorywise(name: string) {
     let fil = data?.data?.filter(
-      (item:data) => item.blog_category.name == name,
+      (item: data) =>
+        item.blog_category.name == name,
     );
     setDa(fil ? fil : data);
     console.log(fil);
@@ -109,7 +110,7 @@ const Blog = () => {
         <p className="text-2xl font-semibold mb-4">
           Categories to Explore
         </p>
-        <div className="px-5 py-6 border border-black rounded-[20px] flex justify-between items-center ">
+        <div className="lg:px-5 px-1 py-6 border border-black rounded-[20px] flex justify-between items-center ">
           <p
             className="font-semibold text-sm lg:text-lg hover:text-[#ee5e7f] cursor-pointer"
             onClick={() => {
@@ -184,7 +185,7 @@ const Blog = () => {
             {(da.length > 0
               ? da
               : data?.data
-            )?.map((item:data) => (
+            )?.map((item: data) => (
               <Link
                 href={`/blog/${item.blog_category.slug}/${item.slug}`}
                 key={item.id || item.name}

@@ -12,7 +12,11 @@ const Sendotp = () => {
   const validemail = z.object({
     email: z.email(),
   });
-  const { register, handleSubmit } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm({
     resolver: zodResolver(validemail),
   });
   const [status, setstatus] = useState();
@@ -50,7 +54,9 @@ const Sendotp = () => {
             placeholder="name@example.com"
           />
           <button className="py-3 text-lg text-[#ef5e7f] w-full hover:bg-[#ef5e7f] hover:text-white transition duration-400 cursor-pointer border border-[#ef5e7f] rounded-2xl mt-7">
-            Send OTP
+            {isSubmitting
+              ? "Sending OTP...."
+              : "Send OTP"}
           </button>
         </form>
       )}

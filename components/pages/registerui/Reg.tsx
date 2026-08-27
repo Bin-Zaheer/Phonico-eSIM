@@ -1,8 +1,6 @@
 "use client";
 import { signIn } from "next-auth/react";
-import {
-  nextregister2,
-} from "@/Types/type";
+import { nextregister2 } from "@/Types/type";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -25,11 +23,14 @@ const Reg = () => {
         path: ["Cpassword"],
       },
     );
-  const { register, handleSubmit } =
-    useForm<nextregister2>({
-      resolver: zodResolver(registerSchema),
-      mode: "onChange",
-    });
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm<nextregister2>({
+    resolver: zodResolver(registerSchema),
+    mode: "onBlur",
+  });
   async function snddata(data: nextregister2) {
     const result = await signIn("credentials", {
       email: data.email,
@@ -109,7 +110,9 @@ const Reg = () => {
           placeholder="e.g. 123"
         />
         <button className="py-3 text-lg text-[#ef5e7f] w-full hover:bg-[#ef5e7f] hover:text-white transition duration-400 cursor-pointer border border-[#ef5e7f] rounded-2xl mt-7">
-          Login
+          {isSubmitting
+            ? "Registring...."
+            : "Register"}
         </button>
       </form>
     </>
