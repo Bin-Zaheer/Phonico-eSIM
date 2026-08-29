@@ -25,13 +25,17 @@ import Emptycart from "../pages/cartui/Emptycart";
 import Link from "next/link";
 import Popup from "./Popup";
 import { useSession } from "next-auth/react";
-import { reduxitems, state, stay } from "@/Types/type";
+import {
+  reduxitems,
+  state,
+  stay,
+} from "@/Types/type";
 import { RootState } from "@/redux/store";
 
 export default function Sidecart() {
   const dispatch = useDispatch();
   const cartItems = useSelector(
-    (state:RootState) => state.cart.items,
+    (state: RootState) => state.cart.items,
   );
   const { data: session, status } = useSession();
 
@@ -47,7 +51,6 @@ export default function Sidecart() {
           ) : null}
         </div>
       </SheetTrigger>
-
       <SheetContent
         side="right"
         className="w-full max-w-full sm:max-w-md overflow-x-hidden z-9"
@@ -59,7 +62,7 @@ export default function Sidecart() {
         </SheetHeader>
 
         {cartItems.length > 0 ? (
-          <div className="2xl:mt-8 flex 2xl:h-full flex-col  ">
+          <div className="mt-8 flex h-full flex-col justify-between ">
             <div className="flex gap-4 border-b p-2 bg-[#f8f6f0] px-2 items-center">
               <Image
                 src={icon}
@@ -96,39 +99,40 @@ export default function Sidecart() {
                 </div>
               </div>
             </div>
-
-            <div className="px-5 mt-auto">
-              <div className=" bg-[#f8f6f0b3] p-5 rounded-2xl mb-2">
-                <div className="mb-4 flex justify-between text-lg font-semibold">
-                  <span>Total</span>
-                  <span>
-                    ${cartItems?.[0]?.price}
-                  </span>
-                </div>
-                {!status ? (
-                  <Link href={"/checkout"}>
-                    <div className="flex justify-center items-center">
-                      <Button className="w-[80%] rounded-xl  py-6 text-[15px] font-semibold text-white">
-                        Checkout
-                      </Button>
-                    </div>
-                  </Link>
-                ) : (
-                  <div className="flex justify-center items-center w-full">
-                    <Popup />
+            <div className="">
+              <div className="px-5 ">
+                <div className=" bg-[#f8f6f0b3] p-5 rounded-2xl mb-2">
+                  <div className="mb-4 flex justify-between text-lg font-semibold">
+                    <span>Total</span>
+                    <span>
+                      ${cartItems?.[0]?.price}
+                    </span>
                   </div>
-                )}
+                  {!status ? (
+                    <Link href={"/checkout"}>
+                      <div className="flex justify-center items-center">
+                        <Button className="w-[80%] rounded-xl  py-6 text-[15px] font-semibold text-white">
+                          Checkout
+                        </Button>
+                      </div>
+                    </Link>
+                  ) : (
+                    <div className="flex justify-center items-center w-full">
+                      <Popup />
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-            <div className="flex justify-around items-center">
-              <p className="flex justify-center items-center  text-[12px] gap-2">
-                <LiaFileContractSolid className="text-lg" />{" "}
-                No Contract Required
-              </p>
-              <p className="flex justify-center items-center text-[12px] gap-2">
-                <TbWallpaperOff className="text-lg" />
-                Cancel Anytime
-              </p>
+              <div className="flex justify-around items-center">
+                <p className="flex justify-center items-center  text-[12px] gap-2">
+                  <LiaFileContractSolid className="text-lg" />{" "}
+                  No Contract Required
+                </p>
+                <p className="flex justify-center items-center text-[12px] gap-2">
+                  <TbWallpaperOff className="text-lg" />
+                  Cancel Anytime
+                </p>
+              </div>
             </div>
           </div>
         ) : (

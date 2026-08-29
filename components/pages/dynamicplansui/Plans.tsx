@@ -16,7 +16,7 @@ import { RootState } from "@/redux/store";
 const Plans = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector(
-    (state:RootState) => state.cart.items,
+    (state: RootState) => state.cart.items,
   );
   const data = JSON.parse(
     localStorage.getItem("Cart") || "[]",
@@ -39,7 +39,7 @@ const Plans = () => {
         position="top-center"
         reverseOrder={true}
       />
-      <div className="lg:flex justify-center items-center w-full px-10">
+      <div className="lg:flex justify-center items-center w-full lg:px-10">
         <div className=" lg:w-[40%] py-15 px-3 sm:px-4 bg-[#f5fcff] flex flex-col items-center gap-3 text-center overflow-visible ">
           <p className="text-4xl  font-semibold mb-4">
             {data.data_usable}GB
@@ -58,7 +58,7 @@ const Plans = () => {
           </div>
 
           <div className="w-full flex flex-col mt-4 justify-center items-center">
-            <div className="w-[60%] gap-2 space-y-4">
+            <div className="lg:w-[60%] w-[65%] gap-2 space-y-4">
               <p className="flex items-start gap-2 text-sm text-[#2d2d2d]">
                 <IoCheckmarkCircleSharp className="shrink-0 mt-0.5 text-xl text-blue-400" />
                 <span className="text-[18px]">
