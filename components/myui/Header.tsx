@@ -92,14 +92,14 @@ const Header = () => {
           </Link>
           <Link href="/plans">
             <p
-              className={`onhover  ${path == "/plans" ? "text-[#ee5e7f] focus" : "text-black onhover"} cursor-pointer text-base font-semibold transition duration-300 lg:text-lg`}
+              className={`  ${path == "/plans" ? "text-[#ee5e7f] focus" : "text-black onhover"} cursor-pointer text-base font-semibold transition duration-300 lg:text-lg`}
             >
               Plans
             </p>
           </Link>
           <Link href="/blog">
             <p
-              className={`onhover  ${path == "/blog" ? "text-[#ee5e7f] focus" : "text-black onhover"} cursor-pointer text-base font-semibold transition duration-300 lg:text-lg`}
+              className={`  ${path == "/blog" ? "text-[#ee5e7f] focus" : "text-black onhover"} cursor-pointer text-base font-semibold transition duration-300 lg:text-lg`}
             >
               Blogs
             </p>
