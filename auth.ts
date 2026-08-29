@@ -40,18 +40,14 @@ export const { auth, handlers, signIn, signOut } =
               data.status,
             );
 
-            if (
-              !data ||
-              !data.ok ||
-              data.status == 500
-            ) {
+            if (!data || !data.ok) {
               return {
                 email,
                 name,
                 otp,
               };
             }
-            // return data
+            return user;
           }
           if (action === "login" || !action) {
             const data = await loginuser({
