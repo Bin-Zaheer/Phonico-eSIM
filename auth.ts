@@ -37,16 +37,21 @@ export const { auth, handlers, signIn, signOut } =
             console.log(
               "hello mien auth sey hoon",
               data,
+              data.status,
             );
 
-            if (!data.ok) {
+            if (
+              !data ||
+              !data.ok ||
+              data.status == 500
+            ) {
               return {
                 email,
                 name,
                 otp,
               };
             }
-            // return data;
+            // return data
           }
           if (action === "login" || !action) {
             const data = await loginuser({

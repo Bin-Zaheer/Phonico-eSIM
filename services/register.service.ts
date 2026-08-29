@@ -15,7 +15,11 @@ export async function registeruser(
       body: JSON.stringify(data),
     },
   );
+  if (!res.ok) {
+    return res;
+  }
   const da = await res.json();
+
   console.log(da);
   return res;
 }

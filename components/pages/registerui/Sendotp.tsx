@@ -53,7 +53,9 @@ const Sendotp = () => {
             {...register("email")}
             placeholder="name@example.com"
           />
-          <button className="py-3 text-lg text-[#ef5e7f] w-full hover:bg-[#ef5e7f] hover:text-white transition duration-400 cursor-pointer border border-[#ef5e7f] rounded-2xl mt-7">
+          <button
+            className={`py-3 text-lg ${isSubmitting ? "bg-[#b53956] text-white" : "text-[#ef5e7f] bg-white"} text-[#ef5e7f] w-full hover:bg-[#ef5e7f] hover:text-white transition duration-400 cursor-pointer border border-[#ef5e7f] rounded-2xl mt-7`}
+          >
             {isSubmitting
               ? "Sending OTP...."
               : "Send OTP"}

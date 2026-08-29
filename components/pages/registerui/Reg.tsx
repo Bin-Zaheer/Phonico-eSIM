@@ -37,9 +37,12 @@ const Reg = () => {
       password: data.password,
       name: data.name,
       otp: data.otp,
-      redirect: true,
+      redirect: false,
       action: "register",
     });
+    if (result) {
+      window.location.href = "/";
+    }
   }
   return (
     <>
@@ -103,13 +106,13 @@ const Reg = () => {
         </label>
         <input
           className="block border w-full py-3.5 rounded-2xl  px-3 font-medium text-[#4d4d4d]"
-          type="number"
-          {...register("otp", {
-            valueAsNumber: true,
-          })}
+          type=""
+          {...register("otp")}
           placeholder="e.g. 123"
         />
-        <button className="py-3 text-lg text-[#ef5e7f] w-full hover:bg-[#ef5e7f] hover:text-white transition duration-400 cursor-pointer border border-[#ef5e7f] rounded-2xl mt-7">
+        <button
+          className={`py-3 text-lg text-[#ef5e7f] w-full ${isSubmitting ? "bg-[#b53956] text-white" : "text-[#ef5e7f] bg-white"} hover:bg-[#ef5e7f] hover:text-white transition duration-400 cursor-pointer border border-[#ef5e7f] rounded-2xl mt-7`}
+        >
           {isSubmitting
             ? "Registring...."
             : "Register"}
