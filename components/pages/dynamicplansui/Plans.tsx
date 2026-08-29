@@ -23,9 +23,12 @@ const Plans = () => {
   );
 
   const handleAdd = () => {
-    console.log("yeh mieri cart hai", cartItems);
     if (cartItems.length === 0) {
       dispatch(addToCart(data));
+      localStorage.setItem(
+        "cartitem",
+        JSON.stringify([data]),
+      );
     } else {
       toast.error(
         "You can only add one item to the cart",

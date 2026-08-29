@@ -20,16 +20,10 @@ import {
 import Image from "next/image";
 import icon from "../../app/icon.png";
 import { clearCart } from "@/redux/slices/cartSlice";
-import { useEffect } from "react";
 import Emptycart from "../pages/cartui/Emptycart";
 import Link from "next/link";
 import Popup from "./Popup";
 import { useSession } from "next-auth/react";
-import {
-  reduxitems,
-  state,
-  stay,
-} from "@/Types/type";
 import { RootState } from "@/redux/store";
 
 export default function Sidecart() {
@@ -38,13 +32,16 @@ export default function Sidecart() {
     (state: RootState) => state.cart.items,
   );
   const { data: session, status } = useSession();
+  const cartItem = JSON.parse(
+    localStorage.getItem("cartitem") || "[]",
+  );
 
   return (
     <Sheet>
       <SheetTrigger>
         <div className="lg:py-2.5 lg:px-3 flex justify-center rounded-md hover:bg-gray-600/20 cursor-pointer border border-gray-500/20 transform transition duration-300 px-2 py-1.5 relative ">
           <CiShoppingCart className="text-3xl lg:text-3xl text-black cursor-pointer" />
-          {cartItems.length > 0 ? (
+          {cartItem.length > 0 ? (
             <div className="rounded-full bg-red-500 w-[35%] text-[12px] absolute -top-3 -right-2">
               1
             </div>
@@ -61,7 +58,7 @@ export default function Sidecart() {
           </SheetTitle>
         </SheetHeader>
 
-        {cartItems.length > 0 ? (
+        {cartItem.length > 0 ? (
           <div className="mt-8 flex h-full flex-col justify-between ">
             <div className="flex gap-4 border-b p-2 bg-[#f8f6f0] px-2 items-center">
               <Image
@@ -75,12 +72,12 @@ export default function Sidecart() {
               <div className="min-w-0 flex flex-1 flex-col px-5">
                 <div className="flex justify-between items-center">
                   <h1 className="font-semibold text-3xl">
-                    {cartItems?.[0]?.data_usable}
+                    {cartItem?.[0]?.data_usable}
                     GB
                   </h1>
 
                   <span className="font-semibold text-3xl">
-                    ${cartItems?.[0]?.price}
+                    ${cartItem?.[0]?.price}
                   </span>
                 </div>
 
@@ -91,9 +88,12 @@ export default function Sidecart() {
                   <button className="text-red-500">
                     <Trash2
                       size={27}
-                      onClick={() =>
-                        dispatch(clearCart())
-                      }
+                      onClick={() => {
+                        (dispatch(clearCart()),
+                          localStorage.removeItem(
+                            "cartitem",
+                          ));
+                      }}
                     />
                   </button>
                 </div>
@@ -105,7 +105,7 @@ export default function Sidecart() {
                   <div className="mb-4 flex justify-between text-lg font-semibold">
                     <span>Total</span>
                     <span>
-                      ${cartItems?.[0]?.price}
+                      ${cartItem?.[0]?.price}
                     </span>
                   </div>
                   {!status ? (
