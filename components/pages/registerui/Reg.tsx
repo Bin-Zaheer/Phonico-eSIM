@@ -14,7 +14,9 @@ const Reg = () => {
         .min(8, "Password At Least 8 Characters"),
       Cpassword: z.string(),
       name: z.string(),
-      otp: z.string(),
+      otp: z
+        .string()
+        .min(1, "OTP must be Required"),
     })
     .refine(
       (data) => data.password === data.Cpassword,
@@ -26,7 +28,7 @@ const Reg = () => {
   const {
     register,
     handleSubmit,
-    formState: { isSubmitting },
+    formState: { isSubmitting, errors, isValid },
   } = useForm<nextregister2>({
     resolver: zodResolver(registerSchema),
     mode: "onBlur",
@@ -86,6 +88,11 @@ const Reg = () => {
           {...register("password")}
           placeholder="Enter password"
         />
+        {errors.password && (
+          <p className="text-red-500 text-sm">
+            {errors.password.message}
+          </p>
+        )}
         <label
           htmlFor="email"
           className="font-medium"
@@ -98,6 +105,11 @@ const Reg = () => {
           {...register("Cpassword")}
           placeholder="*********"
         />
+        {errors.Cpassword && (
+          <p className="text-red-500 text-sm">
+            {errors.Cpassword.message}
+          </p>
+        )}
         <label
           htmlFor="email"
           className="font-medium"
@@ -110,8 +122,14 @@ const Reg = () => {
           {...register("otp")}
           placeholder="e.g. 123"
         />
+        {errors.otp && (
+          <p className="text-red-500 text-sm">
+            {errors.otp.message}
+          </p>
+        )}
         <button
           className={`py-3 text-lg text-[#ef5e7f] w-full ${isSubmitting ? "bg-[#b53956] text-white" : "text-[#ef5e7f] bg-white"} hover:bg-[#ef5e7f] hover:text-white transition duration-400 cursor-pointer border border-[#ef5e7f] rounded-2xl mt-7`}
+          disabled={isSubmitting || !isValid}
         >
           {isSubmitting
             ? "Registring...."
